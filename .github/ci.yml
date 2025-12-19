@@ -1,0 +1,47 @@
+name: Project CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # ตรวจสอบโค้ดฝั่ง Mobile (Expo)
+  mobile-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: TypeScript Check
+        run: npx tsc --noEmit
+
+  # ตรวจสอบโค้ดฝั่ง BFF (Node.js)
+  bff-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install BFF Dependencies
+        working-directory: ./bff
+        run: npm install
+
+      - name: BFF TypeScript Check
+        working-directory: ./bff
+        run: npx tsc --noEmit
