@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "mytruck-mobile",
+    "slug": "mytruck-mobile",
+    "scheme": "mytruck",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": ["expo-router"],
+    "extra": { "router": { "appDir": "src/app" } },
+    "splash": {
+      "image": "./assets/images1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We use your location to tag tracking events."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "category": ["BROWSABLE", "DEFAULT"],
+          "data": [{ "scheme": "mytruck" }]
+        }
+      ]
+    },
+    "web": { "favicon": "./assets/favicon.png" },
+    "extra": { "router": { "origin": "mytruck://" } }
+  }
+}
